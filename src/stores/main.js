@@ -45,7 +45,18 @@ export const useMainStore = defineStore('main', {
         },
         setButtonParams(params) {
             tg.MainButton.setParams(params);
+        },
+        setButtonCallback(callback) {
+            tg.MainButton.onClick(callback);
+        },
+        setBackButtonCallback(callback) {
+            tg.BackButton.onClick(callback);
+        },
+        showButtonProgress() {
+            tg.MainButton.showProgress();
+        },
+        hideButtonProgress() {
+            tg.MainButton.hideProgress();
         }
-
     },
   })

@@ -6,22 +6,21 @@
 import { mapStores } from "pinia";
 import { useMainStore } from "../../stores/main";
 
-const tg = window.Telegram.WebApp;
-
 export default {
   computed: {
     ...mapStores(useMainStore),
   },
   mounted() {
-    tg.MainButton.onClick(() => this.send());
-    tg.BackButton.onClick(() => this.changeStep());
+    console.log("mounted step2");
+    this.mainStore.setButtonCallback(() => this.send());
+    this.mainStore.setBackButtonCallback(() => this.changeStep());
   },
   methods: {
     changeStep() {
       this.$emit("change-step", 0);
     },
     async send() {
-      tg.MainButton.showProgress();
+      this.mainStore.showButtonProgress();
 
       const data = new FormData();
 

@@ -71,6 +71,7 @@ export default {
       deep: true,
     },
     step(currentStep) {
+      console.log(currentStep);
       this.changeButtonParams(currentStep);
       if (currentStep > 0) {
         this.mainStore.showBackButton();
