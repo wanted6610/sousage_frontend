@@ -32,11 +32,14 @@ export default {
   mounted() {
     this.mainStore.expand();
     this.mainStore.ready();
+    this.changeButtonParams(this.step);
   },
   methods: {
     changeStep() {
       this.step += 1;
-      console.log(this.step);
+    },
+    changeButtonParams(step) {
+      this.mainStore.setButtonParams(tgButtonParams[step]);
     },
   },
   watch: {
@@ -54,7 +57,7 @@ export default {
     },
   },
   step(currentStep) {
-    this.mainStore.setButtonParams(tgButtonParams[currentStep]);
+    this.changeButtonParams(currentStep);
   },
 };
 </script>
