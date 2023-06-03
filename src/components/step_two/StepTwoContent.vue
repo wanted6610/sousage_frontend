@@ -31,7 +31,9 @@ export default {
 
       try {
         await this.axios.post(
-          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+          `https://api.telegram.org/bot${
+            import.meta.env.VITE_TELEGRAM_BOT_TOKEN
+          }/sendMessage`,
           data
         );
       } catch (e) {
