@@ -3,6 +3,8 @@
 </template>
 
 <script>
+const tg = window.Telegram.WebApp;
+
 export default {
   mounted() {
     console.log("mounted");
