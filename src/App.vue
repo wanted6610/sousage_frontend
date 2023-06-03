@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
+  <div id="main">
     <p>TELEGRAM FRONT</p>
     <p @click="userStore.addProduct">TEST</p>
-    <p @click="changeStep">change step + 1</p>
+    <p @click="plus">change step + 1</p>
     <p @click="minus">change step - 1</p>
+    <step-one-content v-if="step === 0" @change-step="changeStep" />
+    <step-two-content v-if="step === 1" @change-step="changeStep" />
   </div>
 </template>
 
@@ -20,12 +22,18 @@ import { useMainStore } from "./stores/main";
 import { useUserStore } from "./stores/user";
 import "./tgButtonParams";
 import tgButtonParams from "./tgButtonParams";
+import StepOneContent from "./components/step_one/StepOneContent.vue";
+import StepTwoContent from "./components/step_two/StepTwoContent.vue";
 
 export default {
   data() {
     return {
       step: 0,
     };
+  },
+  components: {
+    StepOneContent,
+    StepTwoContent,
   },
   computed: {
     ...mapStores(useMainStore, useUserStore),
@@ -36,7 +44,10 @@ export default {
     this.changeButtonParams(this.step);
   },
   methods: {
-    changeStep() {
+    changeStep(step) {
+      this.step = step;
+    },
+    plus() {
       this.step = 1;
     },
     minus() {
