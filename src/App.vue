@@ -7,7 +7,7 @@ import {useProductStore} from './stores/products';
     const store = useMainStore();
     store.expand();
     store.ready();
-    store.tg.MainButton.show();
+    store.showButton();
   });
 
   
@@ -19,6 +19,9 @@ import {useProductStore} from './stores/products';
 </div>
 </template>
 
-<style scoped>
-
+<style>
+body {
+	color: var(--tg-theme-text-color);
+	background: var(--tg-theme-bg-color);
+}
 </style>

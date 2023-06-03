@@ -22,6 +22,9 @@ export const useMainStore = defineStore('main', {
         },
         sendData(data) {
             this.tg.sendData(data);
+        },
+        showButton() {
+            // console.log(this.tg.MainButton);
         }
     },
   })
