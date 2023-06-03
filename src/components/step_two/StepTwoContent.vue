@@ -3,16 +3,22 @@
 </template>
 
 <script>
+import { mapStores } from "pinia";
+import { useMainStore } from "../../stores/main";
+
 const tg = window.Telegram.WebApp;
 
 export default {
+  computed: {
+    ...mapStores(useMainStore),
+  },
   mounted() {
     console.log("mounted");
-    tg.MainButton.onClick(() => this.nextStep());
+    tg.MainButton.onClick(() => this.send());
   },
   methods: {
-    nextStep() {
-      this.$emit("change-step", 0);
+    send() {
+      this.mainStore.sendData();
     },
   },
 };
