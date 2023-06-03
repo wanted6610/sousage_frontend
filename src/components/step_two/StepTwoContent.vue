@@ -29,15 +29,9 @@ export default {
         "*Ваш заказ:*\nСосиска  1шт\nПицца  1шт\n\nСумма заказа: *50р*"
       );
 
-      //   let data = JSON.stringify({
-      //     chat_id: "974203396",
-      //     parse_mode: "MarkdownV2",
-      //     text: "*Ваш заказ:*\nСосиска  1шт\nПицца  1шт\n\nСумма заказа: *50р*",
-      //   });
-
       try {
         await this.axios.post(
-          "https://api.telegram.org/bot5631016202:AAExzVN3_KpJVAWqJIkOigTQ6YqP4uxwaLA/sendMessage",
+          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
           data
         );
       } catch (e) {
