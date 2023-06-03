@@ -2,7 +2,8 @@
   <div id="app">
     <p>TELEGRAM FRONT</p>
     <p @click="userStore.addProduct">TEST</p>
-    <p @click="changeStep">change step</p>
+    <p @click="changeStep">change step + 1</p>
+    <p @click="minus">change step - 1</p>
   </div>
 </template>
 
@@ -23,7 +24,7 @@ import tgButtonParams from "./tgButtonParams";
 export default {
   data() {
     return {
-      step: 1,
+      step: 0,
     };
   },
   computed: {
@@ -37,6 +38,9 @@ export default {
   methods: {
     changeStep() {
       this.step += 1;
+    },
+    minus() {
+      this.step -= 1;
     },
     changeButtonParams(step) {
       this.mainStore.setButtonParams(tgButtonParams[step]);
@@ -58,6 +62,11 @@ export default {
   },
   step(currentStep) {
     this.changeButtonParams(currentStep);
+    if (currentStep === 1) {
+      this.mainStore.showBackButton();
+    } else {
+      this.mainStore.hideBackButton();
+    }
   },
 };
 </script>
