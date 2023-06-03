@@ -17,8 +17,22 @@ export default {
     tg.MainButton.onClick(() => this.send());
   },
   methods: {
-    send() {
-      this.mainStore.sendData();
+    async send() {
+      let data = JSON.stringify({
+        chat_id: "974203396",
+        parse_mode: "MarkdownV2",
+        text: "*Ваш заказ:*\nСосиска  1шт\nПицца  1шт\n\nСумма заказа: *50р*",
+      });
+
+      try {
+        await this.axios.post(
+          "https://api.telegram.org/bot5631016202:AAExzVN3_KpJVAWqJIkOigTQ6YqP4uxwaLA/sendMessage",
+          data
+        );
+        this.mainStore.close();
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
