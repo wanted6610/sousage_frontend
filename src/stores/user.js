@@ -7,12 +7,12 @@ export const useUserStore = defineStore('user', {
     state: () => (
         { 
             user: tg.initDataUnsafe?.user ?? null,
+            selectedProducts: [],
         }
     ),
     actions: {
-        getProducts() {
-            // get products in mock data
-            this.products = mockProducts;
+        addProduct() {
+            this.selectedProducts.push(1);
         },
     },
   })
