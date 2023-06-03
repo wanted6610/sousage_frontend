@@ -1,9 +1,11 @@
 import { defineStore } from "pinia"
 
+const tg = window.Telegram.WebApp;
+
 export const useMainStore = defineStore('main', {
     state: () => (
         { 
-            tg: window.Telegram.WebApp,
+            tg: tg,
         }
     ),
     getters: {
@@ -23,8 +25,8 @@ export const useMainStore = defineStore('main', {
         sendData(data) {
             this.tg.sendData(data);
         },
-        showButton() {
-            // console.log(this.tg.MainButton);
+        async showButton() {
+            tg.MainButton.show();
         }
     },
   })
