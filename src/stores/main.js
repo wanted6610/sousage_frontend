@@ -7,7 +7,6 @@ export const useMainStore = defineStore('main', {
         }
     ),
     getters: {
-      telegram: (state) => state.tg,
       isExpanded: (state) => state.tg.isExpanded,
       viewportHeight: (state) => state.tg.viewportHeight,
     },
