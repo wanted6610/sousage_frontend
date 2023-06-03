@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     changeStep() {
-      this.step += 1;
+      this.step = 1;
     },
     minus() {
-      this.step -= 1;
+      this.step = 0;
     },
     changeButtonParams(step) {
       this.mainStore.setButtonParams(tgButtonParams[step]);
@@ -59,14 +59,14 @@ export default {
       },
       deep: true,
     },
-  },
-  step(currentStep) {
-    this.changeButtonParams(currentStep);
-    if (currentStep === 1) {
-      this.mainStore.showBackButton();
-    } else {
-      this.mainStore.hideBackButton();
-    }
+    step(currentStep) {
+      this.changeButtonParams(currentStep);
+      if (currentStep > 0) {
+        this.mainStore.showBackButton();
+      } else {
+        this.mainStore.hideBackButton();
+      }
+    },
   },
 };
 </script>
