@@ -37,5 +37,9 @@ export const useMainStore = defineStore('main', {
         hideButton() {
             tg.MainButton.hide();
         },
+        setButtonParams(params) {
+            tg.MainButton.setParams(params);
+        }
+
     },
   })
