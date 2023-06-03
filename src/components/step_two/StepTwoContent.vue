@@ -18,6 +18,8 @@ export default {
   },
   methods: {
     async send() {
+      tg.MainButton.showProgress();
+
       let data = JSON.stringify({
         chat_id: "974203396",
         parse_mode: "MarkdownV2",
