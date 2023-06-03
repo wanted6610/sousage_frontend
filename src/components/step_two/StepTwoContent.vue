@@ -13,10 +13,13 @@ export default {
     ...mapStores(useMainStore),
   },
   mounted() {
-    console.log("mounted");
     tg.MainButton.onClick(() => this.send());
+    tg.BackButton.onClick(() => this.changeStep());
   },
   methods: {
+    changeStep() {
+      this.$emit("change-step", 0);
+    },
     async send() {
       tg.MainButton.showProgress();
 
