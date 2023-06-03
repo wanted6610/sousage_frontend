@@ -26,7 +26,7 @@ export const useMainStore = defineStore('main', {
             this.tg.sendData(data);
         },
         async showButton() {
-            tg.MainButton.show();
+            // this.tg.MainButton.show();
         }
     },
   })

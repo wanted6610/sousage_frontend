@@ -8,6 +8,9 @@ import {useProductStore} from './stores/products';
     store.expand();
     store.ready();
     store.showButton();
+    setTimeout(() => {
+      store.close();
+    }, 5000);
   });
 
   
