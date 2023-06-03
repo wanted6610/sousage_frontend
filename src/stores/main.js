@@ -1,4 +1,4 @@
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
 
 const tg = window.Telegram.WebApp;
 
@@ -25,8 +25,11 @@ export const useMainStore = defineStore('main', {
         sendData(data) {
             this.tg.sendData(data);
         },
-        async showButton() {
-            // this.tg.MainButton.show();
+        showButton() {
+            tg.MainButton.show();
+        },
+        hideButton() {
+            tg.MainButton.hide();
         }
     },
   })

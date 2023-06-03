@@ -3,14 +3,12 @@
 import {useMainStore} from './stores/main';
 import {useProductStore} from './stores/products';
 
-  onMounted(() => {
     const store = useMainStore();
+
+  onMounted(() => {
+
     store.expand();
     store.ready();
-    store.showButton();
-    setTimeout(() => {
-      store.close();
-    }, 5000);
   });
 
   
@@ -19,6 +17,7 @@ import {useProductStore} from './stores/products';
 <template>
 <div id="app">
   <p>TELEGRAM FRONT</p>
+  <p>{{store.tg.initDataUnsafe}}</p>
 </div>
 </template>
 
