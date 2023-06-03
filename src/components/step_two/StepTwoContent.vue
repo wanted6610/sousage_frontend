@@ -15,6 +15,10 @@ export default {
     this.mainStore.setButtonCallback(() => this.send());
     this.mainStore.setBackButtonCallback(() => this.changeStep());
   },
+  beforeUnmount() {
+    this.mainStore.removeButtonCallBack(() => this.send());
+    this.mainStore.removeBackButtonCallback(() => this.nextStep());
+  },
   methods: {
     changeStep() {
       this.$emit("change-step", 0);
