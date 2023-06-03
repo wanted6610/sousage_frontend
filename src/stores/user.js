@@ -1,7 +1,10 @@
 import { defineStore } from "pinia"
-import mockProducts from "../mockProducts";
 
 const tg = window.Telegram.WebApp;
+
+function checkExistProduct(array, value) {
+    return array.findIndex((item) => item.id === value.id);
+}
 
 export const useUserStore = defineStore('user', {
     state: () => (
@@ -11,8 +14,19 @@ export const useUserStore = defineStore('user', {
         }
     ),
     actions: {
-        addProduct() {
-            this.selectedProducts.push(1);
+        addProduct(product) {
+            let findIndex = checkExistProduct(this.selectedProducts, product);
+            if (findIndex != -1) {
+                this.selectedProducts[findIndex] = product;
+            } else {
+                this.selectedProducts.push(product);
+            }
         },
+        removeProduct(product) {
+            let findIndex = checkExistProduct(this.selectedProducts, product);
+            if (findIndex != -1) {
+                this.selectedProducts.splice(findIndex, 1);
+            }
+        }
     },
   })

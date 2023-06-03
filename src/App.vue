@@ -30,8 +30,10 @@ export default {
       handler: function () {
         if (this.userStore.selectedProducts.length) {
           this.mainStore.enableShowConfirmation();
+          this.mainStore.showButton();
         } else {
           this.mainStore.disableShowConfirmation();
+          this.mainStore.hideButton();
         }
       },
       deep: true,
