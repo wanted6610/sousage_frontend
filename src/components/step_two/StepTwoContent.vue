@@ -11,12 +11,10 @@ export default {
     ...mapStores(useMainStore),
   },
   mounted() {
-    console.log("mounted step2");
     this.mainStore.setButtonCallback(this.send);
     this.mainStore.setBackButtonCallback(this.changeStep);
   },
   beforeUnmount() {
-    console.log("1");
     this.mainStore.removeButtonCallBack(this.send);
     this.mainStore.removeBackButtonCallback(this.changeStep);
   },

@@ -56,22 +56,28 @@ export default {
     changeButtonParams(step) {
       this.mainStore.setButtonParams(tgButtonParams[step]);
     },
+    setConfirmation() {
+      if (this.userStore.selectedProducts.length) {
+        this.mainStore.enableShowConfirmation();
+      } else {
+        this.mainStore.disableShowConfirmation();
+      }
+    },
   },
   watch: {
     userStore: {
       handler: function () {
+        this.setConfirmation();
         if (this.userStore.selectedProducts.length) {
-          this.mainStore.enableShowConfirmation();
           this.mainStore.showButton();
         } else {
-          this.mainStore.disableShowConfirmation();
           this.mainStore.hideButton();
         }
       },
       deep: true,
     },
     step(currentStep) {
-      console.log(currentStep);
+      this.setConfirmation();
       this.changeButtonParams(currentStep);
       if (currentStep > 0) {
         this.mainStore.showBackButton();

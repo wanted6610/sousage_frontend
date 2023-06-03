@@ -8,7 +8,6 @@ import { useMainStore } from "../../stores/main";
 
 export default {
   mounted() {
-    console.log("mounted step1");
     this.mainStore.setButtonCallback(this.nextStep);
   },
   beforeUnmount() {
