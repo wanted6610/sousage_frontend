@@ -1,10 +1,12 @@
 import { defineStore } from "pinia"
-import mockProducts from "../mockProducts"
+import mockProducts from "../mockProducts";
 
-export const useProductStore = defineStore('user', {
+const tg = window.Telegram.WebApp;
+
+export const useUserStore = defineStore('user', {
     state: () => (
         { 
-            products: [],
+            user: tg.initDataUnsafe?.user ?? null,
         }
     ),
     actions: {

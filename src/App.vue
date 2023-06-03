@@ -2,8 +2,10 @@
   import { onMounted } from 'vue';
 import {useMainStore} from './stores/main';
 import {useProductStore} from './stores/products';
+import {useUserStore} from './stores/user';
 
     const store = useMainStore();
+    const user = useUserStore();
 
   onMounted(() => {
 
@@ -17,7 +19,7 @@ import {useProductStore} from './stores/products';
 <template>
 <div id="app">
   <p>TELEGRAM FRONT</p>
-  <p>{{store.tg.initDataUnsafe}}</p>
+  <p v-if="user.user">{{user.user}}</p>
 </div>
 </template>
 
