@@ -8,7 +8,7 @@ const tg = window.Telegram.WebApp;
 export default {
   mounted() {
     console.log("mounted");
-    tg.MainButton.onClick(this.nextStep());
+    tg.MainButton.onClick(() => this.nextStep());
   },
   methods: {
     nextStep() {
