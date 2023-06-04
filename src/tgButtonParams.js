@@ -1,12 +1,12 @@
 export default [
     {
         text: 'Продолжить',
-        color: '#EA0000',
+        color: '#F44336',
         text_color: '#ffffff',
     },
     {
         text: 'Оформить заказ',
-        color: '#EA0000',
+        color: '#F44336',
         text_color: '#ffffff',
     },
 ];
