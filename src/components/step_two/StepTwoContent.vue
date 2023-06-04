@@ -5,10 +5,11 @@
 <script>
 import { mapStores } from "pinia";
 import { useMainStore } from "../../stores/main";
+import { useUserStore } from "../../stores/user";
 
 export default {
   computed: {
-    ...mapStores(useMainStore),
+    ...mapStores(useMainStore, useUserStore),
   },
   mounted() {
     this.mainStore.setButtonCallback(this.send);
@@ -28,10 +29,21 @@ export default {
       const data = new FormData();
       data.set("chat_id", "974203396");
       data.set("parse_mode", "MarkdownV2");
-      data.set(
-        "text",
-        "*Ваш заказ:*\nСосиска  1шт\nПицца  1шт\n\nСумма заказа: *50р*"
+
+      let sendedText = "*Ваш заказ:*";
+
+      this.userStore.selectedProducts.forEach(
+        (product) => (sendedText += `\n${product.name} ${product.quantity}`)
       );
+
+      const productSum = this.userStore.selectedProducts.reduce(
+        (sum, current) => sum + current.price * current.quantity,
+        0
+      );
+
+      sendedText += `\nСумма заказа: *${productSum}р*`;
+
+      data.set("text", sendedText);
 
       try {
         await this.axios.post(

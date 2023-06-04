@@ -1,5 +1,10 @@
 <template>
   <div class="product">
+    <v-badge
+      class="product__badge"
+      :content="quantity"
+      v-if="quantity > 0"
+    ></v-badge>
     <v-img
       max-height="100"
       src="https://spkfood.ru/upload/iblock/95d/95d9c67418d6b26be3dc8a4e2c886090.png"
@@ -87,6 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 .product {
+  position: relative;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -95,6 +101,11 @@ export default {
   &__description {
     font-weight: 300;
     flex: 1;
+  }
+  &__badge {
+    position: absolute;
+    right: 15px;
+    top: 15px;
   }
 }
 .v-enter-active,
