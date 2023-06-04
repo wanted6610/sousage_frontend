@@ -58,7 +58,7 @@ import StepTwoContent from "./components/step_two/StepTwoContent.vue";
 export default {
   data() {
     return {
-      step: 1,
+      step: 0,
       loadingPage: false,
     };
   },
