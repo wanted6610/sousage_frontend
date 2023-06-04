@@ -25,10 +25,15 @@ time, mark, audio, video {
 	user-select: none;       
 }
 
-h1,h2,p,span {
+h1,h2,p {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 	color: var(--tg-theme-text-color);
+}
+
+span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
 }
 
 /* HTML5 display-role reset for older browsers */
