@@ -8,6 +8,11 @@ import { useMainStore } from "../../stores/main";
 import { useUserStore } from "../../stores/user";
 
 export default {
+  data() {
+    return {
+      isAlternative: false,
+    };
+  },
   computed: {
     ...mapStores(useMainStore, useUserStore),
   },
@@ -40,6 +45,8 @@ export default {
         (sum, current) => sum + current.price * current.quantity,
         0
       );
+
+      sendedText += `\n Альтернатива: *${this.isAlternative ? "Да" : "Нет"}*`;
 
       sendedText += `\nСумма заказа: *${productSum}р*`;
 
