@@ -33,7 +33,7 @@ export default {
       let sendedText = "*Ваш заказ:*";
 
       this.userStore.selectedProducts.forEach(
-        (product) => (sendedText += `\n${product.name} ${product.quantity}`)
+        (product) => (sendedText += `\n${product.name} ${product.quantity}шт.`)
       );
 
       const productSum = this.userStore.selectedProducts.reduce(
