@@ -1,8 +1,19 @@
 <template>
-  <v-container>
-    <step-one-content v-if="step === 0" @change-step="changeStep" />
-    <step-two-content v-if="step === 1" @change-step="changeStep" />
-  </v-container>
+  <div class="main">
+    <div v-if="loadingPage" class="counter">
+      <vue-countdown
+        :time="10 * 1000"
+        v-slot="{ minutes, seconds }"
+        @end="endOrders"
+      >
+        Прием заказов закончится через {{ minutes }}:{{ seconds }}
+      </vue-countdown>
+    </div>
+    <v-container>
+      <step-one-content v-if="step === 0" @change-step="changeStep" />
+      <step-two-content v-if="step === 1" @change-step="changeStep" />
+    </v-container>
+  </div>
 </template>
 
 <style>
@@ -16,6 +27,13 @@ body {
   padding: 0;
   margin: 0;
 }
+.counter {
+  color: #ffffff;
+  background: #f44336;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 300;
+}
 </style>
 
 <script>
@@ -23,6 +41,7 @@ import { mapStores } from "pinia";
 import { useMainStore } from "./stores/main";
 import { useUserStore } from "./stores/user";
 import { useProductStore } from "./stores/products";
+import VueCountdown from "@chenfengyuan/vue-countdown";
 
 import "./tgButtonParams";
 import tgButtonParams from "./tgButtonParams";
@@ -33,11 +52,13 @@ export default {
   data() {
     return {
       step: 0,
+      loadingPage: false,
     };
   },
   components: {
     StepOneContent,
     StepTwoContent,
+    VueCountdown,
   },
   computed: {
     ...mapStores(useMainStore, useUserStore, useProductStore),
@@ -47,10 +68,14 @@ export default {
 
     this.productsStore.getProducts();
     // load products and set app ready
+    this.loadingPage = true;
     this.mainStore.ready();
     this.changeButtonParams(this.step);
   },
   methods: {
+    endOrders() {
+      this.mainStore.close();
+    },
     changeStep(step) {
       this.step = step;
     },

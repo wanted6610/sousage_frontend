@@ -2,6 +2,7 @@
   <div class="product">
     <v-badge
       class="product__badge"
+      color="#FB8C00"
       :content="quantity"
       v-if="quantity > 0"
     ></v-badge>
@@ -20,19 +21,19 @@
     </v-img>
     <p class="product__name mt-2">{{ product.name }}</p>
     <p class="product__description mt-2">{{ product.description }}</p>
-    <div class="product__buttons mt-2">
+    <div class="product__buttons mt-3">
       <!-- <transition mode="out-in"> -->
       <v-btn
         block
         v-if="quantity === 0"
         @click="addProduct"
         rounded="lg"
-        class="bg-orange-lighten-1"
-        >Добавить</v-btn
+        class="bg-orange-darken-1"
+        ><p class="product__button__content">Добавить</p></v-btn
       >
       <v-row v-else no-gutters justify="space-between">
         <v-btn @click="removeProduct" rounded="lg" class="bg-red">-</v-btn>
-        <v-btn @click="addProduct" rounded="lg" class="bg-orange-lighten-1"
+        <v-btn @click="addProduct" rounded="lg" class="bg-orange-darken-1"
           >+</v-btn
         >
       </v-row>
@@ -101,11 +102,17 @@ export default {
   &__description {
     font-weight: 300;
     flex: 1;
+    font-size: 12px;
   }
   &__badge {
     position: absolute;
     right: 15px;
     top: 15px;
+  }
+  &__button {
+    &__content {
+      color: #ffffff;
+    }
   }
 }
 .v-enter-active,
