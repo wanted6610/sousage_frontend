@@ -1,11 +1,13 @@
 <template>
   <div class="product">
-    <v-badge
-      class="product__badge"
-      color="#FB8C00"
-      :content="quantity"
-      v-if="quantity > 0"
-    ></v-badge>
+    <transition>
+      <v-badge
+        class="product__badge"
+        color="#FB8C00"
+        :content="quantity"
+        v-if="quantity > 0"
+      ></v-badge>
+    </transition>
     <v-img
       max-height="100"
       src="https://spkfood.ru/upload/iblock/95d/95d9c67418d6b26be3dc8a4e2c886090.png"
@@ -97,12 +99,11 @@ export default {
   text-align: left;
   display: flex;
   flex-direction: column;
-  &__name {
-  }
   &__description {
     font-weight: 300;
     flex: 1;
     font-size: 12px;
+    color: var(--tg-theme-hint-color);
   }
   &__badge {
     position: absolute;

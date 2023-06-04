@@ -2,7 +2,7 @@
   <div class="main">
     <div v-if="loadingPage" class="counter">
       <vue-countdown
-        :time="10 * 1000"
+        :time="2 * 24 * 60 * 60 * 1000"
         v-slot="{ minutes, seconds }"
         @end="endOrders"
       >
