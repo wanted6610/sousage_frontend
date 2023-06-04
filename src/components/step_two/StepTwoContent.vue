@@ -26,7 +26,6 @@ export default {
       this.mainStore.showButtonProgress();
 
       const data = new FormData();
-
       data.set("chat_id", "974203396");
       data.set("parse_mode", "MarkdownV2");
       data.set(

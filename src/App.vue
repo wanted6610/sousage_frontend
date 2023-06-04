@@ -1,12 +1,8 @@
 <template>
-  <div id="main">
-    <p>TELEGRAM FRONT</p>
-    <p @click="userStore.addProduct">TEST</p>
-    <p @click="plus">change step + 1</p>
-    <p @click="minus">change step - 1</p>
+  <v-container>
     <step-one-content v-if="step === 0" @change-step="changeStep" />
     <step-two-content v-if="step === 1" @change-step="changeStep" />
-  </div>
+  </v-container>
 </template>
 
 <style>
@@ -14,12 +10,20 @@ body {
   color: var(--tg-theme-text-color);
   background: var(--tg-theme-bg-color);
 }
+#app {
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
+  margin: 0;
+}
 </style>
 
 <script>
 import { mapStores } from "pinia";
 import { useMainStore } from "./stores/main";
 import { useUserStore } from "./stores/user";
+import { useProductStore } from "./stores/products";
+
 import "./tgButtonParams";
 import tgButtonParams from "./tgButtonParams";
 import StepOneContent from "./components/step_one/StepOneContent.vue";
@@ -36,22 +40,19 @@ export default {
     StepTwoContent,
   },
   computed: {
-    ...mapStores(useMainStore, useUserStore),
+    ...mapStores(useMainStore, useUserStore, useProductStore),
   },
   mounted() {
     this.mainStore.expand();
+
+    this.productsStore.getProducts();
+    // load products and set app ready
     this.mainStore.ready();
     this.changeButtonParams(this.step);
   },
   methods: {
     changeStep(step) {
       this.step = step;
-    },
-    plus() {
-      this.step = 1;
-    },
-    minus() {
-      this.step = 0;
     },
     changeButtonParams(step) {
       this.mainStore.setButtonParams(tgButtonParams[step]);
