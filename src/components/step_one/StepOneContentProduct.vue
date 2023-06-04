@@ -4,6 +4,7 @@
       <v-badge
         class="product__badge"
         color="#FB8C00"
+        text-color="#FFFFFF"
         :content="quantity"
         v-if="quantity > 0"
       ></v-badge>
@@ -34,10 +35,12 @@
         ><p class="product__button__content">Добавить</p></v-btn
       >
       <v-row v-else no-gutters justify="space-between">
-        <v-btn @click="removeProduct" rounded="lg" class="bg-red">-</v-btn>
+        <v-btn @click="removeProduct" rounded="lg" class="bg-red"
+          ><MinusIcon
+        /></v-btn>
         <v-btn @click="addProduct" rounded="lg" class="bg-orange-darken-1"
-          >+</v-btn
-        >
+          ><PlusIcon
+        /></v-btn>
       </v-row>
       <!-- </transition> -->
     </div>
@@ -47,6 +50,8 @@
 <script>
 import { mapStores } from "pinia";
 import { useUserStore } from "../../stores/user";
+import PlusIcon from "../../assets/icon__plus.svg";
+import MinusIcon from "../../assets/icon__minus.svg";
 
 export default {
   data() {
@@ -59,6 +64,10 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  components: {
+    PlusIcon,
+    MinusIcon,
   },
   computed: {
     ...mapStores(useUserStore),
