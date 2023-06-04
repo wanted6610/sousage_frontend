@@ -37,16 +37,20 @@ export default {
 
       let sendedText = "*Ваш заказ:*";
 
+      sendedText += "\n━━━━━━━━━━";
+
       this.userStore.selectedProducts.forEach(
         (product) => (sendedText += `\n${product.name} ${product.quantity}шт`)
       );
+
+      sendedText += "\n━━━━━━━━━━";
 
       const productSum = this.userStore.selectedProducts.reduce(
         (sum, current) => sum + current.price * current.quantity,
         0
       );
 
-      sendedText += `\n Альтернатива: *${this.isAlternative ? "Да" : "Нет"}*`;
+      sendedText += `\nАльтернатива: *${this.isAlternative ? "Да" : "Нет"}*`;
 
       sendedText += `\nСумма заказа: *${productSum}р*`;
 
