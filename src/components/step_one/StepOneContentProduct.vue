@@ -16,20 +16,15 @@
     <p class="product__name mt-2">{{ product.name }}</p>
     <p class="product__description mt-2">{{ product.description }}</p>
     <div class="product__buttons mt-2">
-      <transition mode="out-in">
-        <v-btn
-          block
-          v-if="quantity === 0"
-          @click="addProduct"
-          rounded="lg"
-          plain
-          >Добавить</v-btn
-        >
-        <v-row v-else no-gutters justify="space-between">
-          <v-btn @click="removeProduct" rounded="lg" plain>-</v-btn>
-          <v-btn @click="addProduct" rounded="lg" plain>+</v-btn>
-        </v-row>
-      </transition>
+      <!-- <transition mode="out-in"> -->
+      <v-btn block v-if="quantity === 0" @click="addProduct" rounded="lg" plain
+        >Добавить</v-btn
+      >
+      <v-row v-else no-gutters justify="space-between">
+        <v-btn @click="removeProduct" rounded="lg" plain>-</v-btn>
+        <v-btn @click="addProduct" rounded="lg" plain>+</v-btn>
+      </v-row>
+      <!-- </transition> -->
     </div>
   </div>
 </template>
