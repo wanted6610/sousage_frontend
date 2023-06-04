@@ -76,7 +76,7 @@ export default {
         (product) => product.id === this.product.id
       );
       if (findIndex != -1) {
-        this.quantity = this.userStore.selectedProducts[finded].quantity;
+        this.quantity = this.userStore.selectedProducts[findIndex].quantity;
       }
     },
   },
