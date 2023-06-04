@@ -1,11 +1,45 @@
 <template>
-  <p>stepTwo</p>
+  <div class="step">
+    <div class="step-header">
+      <h2 class="step-header__title">Ваш заказ</h2>
+      <v-btn
+        variant="text"
+        rounded="lg"
+        class="text-red-darken-1"
+        @click="changeStep"
+        >Изменить</v-btn
+      >
+    </div>
+    <div class="step-list">
+      <div
+        class="step-list__item"
+        v-for="(product, index) in userStore.selectedProducts"
+        :key="product.id"
+      >
+        <div v-if="index > 0" class="divider"></div>
+        <step-two-content-product :product="product" />
+      </div>
+    </div>
+    <v-checkbox
+      v-model="isAlternative"
+      label="Нужна альтернатива?"
+      color="red-darken-1"
+      hide-details
+    ></v-checkbox>
+    <p class="step__total mt-2">
+      Итоговая сумма заказа:
+      <span class="step__price text-orange-darken-1"
+        >{{ selectedProductsPrice }}р</span
+      >.
+    </p>
+  </div>
 </template>
 
 <script>
 import { mapStores } from "pinia";
 import { useMainStore } from "../../stores/main";
 import { useUserStore } from "../../stores/user";
+import StepTwoContentProduct from "./StepTwoContentProduct.vue";
 
 export default {
   data() {
@@ -13,8 +47,17 @@ export default {
       isAlternative: false,
     };
   },
+  components: {
+    StepTwoContentProduct,
+  },
   computed: {
     ...mapStores(useMainStore, useUserStore),
+    selectedProductsPrice() {
+      return this.userStore.selectedProducts.reduce(
+        (sum, current) => sum + current.price * current.quantity,
+        0
+      );
+    },
   },
   mounted() {
     this.mainStore.setButtonCallback(this.send);
@@ -45,14 +88,9 @@ export default {
 
       sendedText += "\n━━━━━━━━━━";
 
-      const productSum = this.userStore.selectedProducts.reduce(
-        (sum, current) => sum + current.price * current.quantity,
-        0
-      );
-
       sendedText += `\nАльтернатива: *${this.isAlternative ? "✅" : "❎"}*\n`;
 
-      sendedText += `\nСумма заказа: *${productSum}р*`;
+      sendedText += `\nСумма заказа: *${this.selectedProductsPrice}р*`;
 
       data.set("text", sendedText);
 
@@ -72,4 +110,26 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.step {
+  &__total {
+    text-align: right;
+    font-weight: 500;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 5px 0;
+}
+</style>

@@ -10,7 +10,19 @@ export const useUserStore = defineStore('user', {
     state: () => (
         { 
             user: tg.initDataUnsafe?.user ?? null,
-            selectedProducts: [],
+            selectedProducts: [{
+                id: 0,
+                name: 'Сосиска',
+                description: 'Сочная сосиска, запеченная в хрустящем тесте.',
+                price: 50,
+                quantity: 3,
+            },    {
+                id: 1,
+                name: 'Пицца',
+                description: 'Суперзвезда итальянской кухни.',
+                price: 50,
+                quantity: 5,
+            },],
         }
     ),
     actions: {
