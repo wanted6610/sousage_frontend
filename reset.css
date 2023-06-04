@@ -17,9 +17,6 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 400;
-	color: var(--tg-theme-text-color);
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none;   /* Chrome/Safari/Opera */
 	-khtml-user-select: none;    /* Konqueror */
@@ -27,6 +24,13 @@ time, mark, audio, video {
 	-ms-user-select: none;       /* Internet Explorer/Edge */
 	user-select: none;       
 }
+
+h1,h2,p,span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	color: var(--tg-theme-text-color);
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -53,6 +57,7 @@ table {
 
 button {
 	border: none;
+	font-family: 'Roboto', sans-serif;
 }
 
 button:focus {
