@@ -40,7 +40,7 @@ export default {
       sendedText += "\n━━━━━━━━━━";
 
       this.userStore.selectedProducts.forEach(
-        (product) => (sendedText += `\n${product.name} ${product.quantity}шт`)
+        (product) => (sendedText += `\n${product.name} ╴ ${product.quantity}шт`)
       );
 
       sendedText += "\n━━━━━━━━━━";
@@ -50,7 +50,7 @@ export default {
         0
       );
 
-      sendedText += `\nАльтернатива: *${this.isAlternative ? "Да" : "Нет"}*`;
+      sendedText += `\nАльтернатива: *${this.isAlternative ? "✅" : "❎"}*\n`;
 
       sendedText += `\nСумма заказа: *${productSum}р*`;
 
