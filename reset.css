@@ -45,6 +45,10 @@ table {
 	border-spacing: 0;
 }
 
+button {
+	border: none;
+}
+
 /* button:focus {
 	outline: none !important;
 } */

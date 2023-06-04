@@ -6,7 +6,12 @@
         v-slot="{ minutes, seconds }"
         @end="endOrders"
       >
-        Прием заказов закончится через {{ minutes }}:{{ seconds }}
+        <p class="counter__text">
+          Прием заказов закончится через
+          {{ minutes <= 9 ? `0${minutes}` : minutes }}:{{
+            seconds <= 9 ? `0${seconds}` : seconds
+          }}
+        </p>
       </vue-countdown>
     </div>
     <v-container>
@@ -16,7 +21,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 body {
   color: var(--tg-theme-text-color);
   background: var(--tg-theme-bg-color);
@@ -28,11 +33,13 @@ body {
   margin: 0;
 }
 .counter {
-  color: #ffffff;
   background: #f44336;
   padding: 10px;
-  font-size: 12px;
-  font-weight: 300;
+  &__text {
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+  }
 }
 </style>
 
