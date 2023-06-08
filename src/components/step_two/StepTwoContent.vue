@@ -72,16 +72,15 @@ export default {
       this.$emit("change-step", 0);
     },
     async send() {
-
       let urlParams = new URLSearchParams(window.location.search);
 
-      if (urlParams.has('chatid')) return;
+      if (!urlParams.has("chatid")) return;
 
       this.mainStore.showButtonProgress();
 
       const data = new FormData();
 
-      data.set("chat_id", urlParams.get('chatid'));
+      data.set("chat_id", urlParams.get("chatid"));
       data.set("parse_mode", "MarkdownV2");
 
       let sendedText = "*Ваш заказ:*";
